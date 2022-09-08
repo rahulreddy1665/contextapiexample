@@ -2,8 +2,10 @@ import {View, Text, Button, Switch} from 'react-native';
 import React, {useContext} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {PratciseContext} from '../global/Context';
+import I18n from '../Il8n/il8n';
 import {light} from '../global/Data';
 import {Dark} from '../global/Data';
+import Il8n from '../Il8n/il8n';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -19,6 +21,10 @@ const Home = () => {
     setVal1(val1 + 1);
     setVal2(val2 + 2);
     setVal(val + 1);
+  };
+
+  const handleLanguage = () => {
+    console.log(I18n.currentLocale());
   };
 
   return (
@@ -42,15 +48,33 @@ const Home = () => {
       <Text style={{color: mode === true ? light.color : Dark.color}}>
         {val2}
       </Text>
+      <Text
+        style={{
+          color: mode === true ? light.color : Dark.color,
+          marginTop: 10,
+          marginBottom: 10,
+        }}>
+        IL8N Language translation
+      </Text>
+      <Text style={{color: mode === true ? light.color : Dark.color}}>
+        {I18n.t('Hello')}
+      </Text>
+      <Text style={{color: mode === true ? light.color : Dark.color}}>
+        {I18n.t('Switch')}
+      </Text>
+      <Text style={{color: mode === true ? light.color : Dark.color}}>
+        {I18n.t('Text')}
+      </Text>
+
       <Button
         onPress={handleNavigation1}
-        title="INCREASE"
+        title={I18n.t('Increase')}
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
       <Button
         onPress={handleNavigation}
-        title="Next Screen"
+        title={I18n.t('Next screen')}
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
       />
@@ -66,3 +90,4 @@ const Home = () => {
 };
 
 export default Home;
+// @flow
